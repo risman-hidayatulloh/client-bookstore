@@ -1,0 +1,9 @@
+.post-thumb{
+	width: 10%;
+	height: 10%;
+}
+
+.absolute {
+    position: absolute;
+    right: 140px;
+} 

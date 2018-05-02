@@ -18,27 +18,18 @@
 		        <a class="nav-link" href="<?php echo site_url('Welcome/'); ?>">Beranda <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?php echo site_url('Welcome/about'); ?>">Tentang<span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="<?php echo site_url('Welcome/about'); ?>">Tentang <span class="sr-only">(current)</span></a>
 		      </li>
 		    </ul>
 
 		    <form class="form-inline my-2 my-lg-0">
 		    	<ul class="navbar-nav mr-auto">
 		    		<li>
-		    			<a class="nav-link" href="<?php echo site_url('Welcome/login'); ?>">Masuk<span class="sr-only">(current)</span></a>
+		    			<a class="nav-link" href="<?php echo site_url('Welcome/login'); ?>">Masuk <span class="sr-only">(current)</span></a>
 		    		</li>
 		    		<li>
-		    			<a class="nav-link" href="<?php echo site_url('Welcome/regist'); ?>">Daftar<span class="sr-only">(current)</span></a>
+		    			<a class="nav-link" href="<?php echo site_url('Welcome/regist'); ?>">Daftar <span class="sr-only">(current)</span></a>
 		    		</li>
-		    		<!-- <li>
-		    			<a class="nav-link" href=""><i class="fa" style="color:white;">&#xf290;</i>&nbsp;&nbsp;Keranjang</a>
-		    		</li> -->
-		    		<!-- <li>
-				      	<form class="form-inline my-2 my-lg-0">
-							<input class="form-control mr-sm-2" type="text" placeholder="Search">
-						    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-						</form>
-				    </li> -->
 		    	</ul>
 		    </form>
 		  </div>
@@ -48,37 +39,25 @@
 	<nav class="container">	
 		<nav class="jumbotron">
 			<div class="row">
-				<div class="col-md-5"></div>
-				<div class="col-md-2">
-					<center>
-						<h3>Masuk</h3>
-					</center>
-					<hr class="my-3">
-				</div>
-				<div class="col-md-5"></div>
-			</div>
-			<div class="row">
 				<div class="col-md-2"></div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<center>
-						<div class="card text-white bg-dark mb-8" style="max-width: 20rem;">
-						  <div class="card-body">
-						    <form method="" action="<?php echo site_url('Welcome/proseslogin'); ?>">
-						    	<div class="form-group">
-							      <input type="text" class="form-control" placeholder="Username"><br>
-							      <input type="password" class="form-control" placeholder="Password">
+						<form>
+							<fieldset>
+								<div class="form-group">
+							      <input type="text" class="form-control" placeholder="Cari">
 							    </div>
-							    <button type="submit" class="btn btn-primary">Masuk</button>
-						    </form>
-						  </div>
-						</div>
+							</fieldset>	
 					</center>
 				</div>
 				<div class="col-md-2">
-					
+							<button type="submit" class="btn btn-primary">Cari</button>
+						</form>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
+			<hr class="my-12">
+			<!-- <?php foreach() ?> -->
 		</nav>
 	</nav>
 
@@ -87,6 +66,7 @@
 		  <p>Contact information: <a href="mailto:C16@gmail.com">
 		  C16@gmail.com</a>.</p>
 		</footer>
+		
 	</nav>
 </body>
 </html>

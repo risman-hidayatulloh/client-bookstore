@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Book Store</title>
+	<title>Toko Buku</title>
 	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/lux/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<nav class="container">
-			<a class="navbar-brand" href="<?php echo site_url('Welcome/'); ?>">ONLINE BOOKSTORE</a>
+			<a class="navbar-brand" href="<?php echo site_url('Welcome/'); ?>">Buku.com</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
@@ -18,7 +18,7 @@
 		        <a class="nav-link" href="<?php echo site_url('Welcome/'); ?>">Beranda <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Tentang <span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="<?php echo site_url('Welcome/about'); ?>">Tentang <span class="sr-only">(current)</span></a>
 		      </li>
 		    </ul>
 
