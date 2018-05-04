@@ -6,11 +6,35 @@
 	*/
 	class UserModel extends CI_Model
 	{
+		var $api = "http://d9e6b284.ngrok.io/api/"
 		
 		function __construct()
 		{
 			parent::__construct();
+			$this->load->library('curl');
 		}
+
+		/////////////////////////////////////
+		//pengecekan author berdasarkan data server
+		public function CariAuthor($berdasarkan, $key){
+			return json_decode($this->curl->simple_get->($this->api.'author'));
+		}
+
+		//pengecekan Publish berdasarkan data server
+		public function CariPublish($berdasarkan, $key){
+			return json_decode($this->curl->simple_get->($this->api.'publish'));
+		}
+
+		//pengecekan Book berdasarkan data server
+		public function CariBook($berdasarkan, $key){
+			return json_decode($this->curl->simple_get->($this->api.'book'));
+		}
+
+		//pengecekan Customer berdasarkan data server
+		public function CariCustomer($berdasarkan, $key){
+			return json_decode($this->curl->simple_get->($this->api.'customer'));
+		}
+		/////////////////////////////////////
 
 		public function login($data)
 		{
@@ -51,5 +75,9 @@
 		public function register($data){
 			$this->db->insert('tbusername', $data);
 		}
+
+		//////////////////////////////////////////////////
+
+
 	}
  ?>

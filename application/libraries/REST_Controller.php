@@ -12,7 +12,7 @@
  * @license         http://philsturgeon.co.uk/code/dbad-license
  * @link			http://philsturgeon.co.uk/code/codeigniter-curl
  */
-class curl {
+class REST_Controller {
 
 	protected $_ci;                 // CodeIgniter instance
 	protected $response = '';       // Contains the cURL response for debug

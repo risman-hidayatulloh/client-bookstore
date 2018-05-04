@@ -42,22 +42,31 @@
 	<nav class="container">	
 		<nav class="jumbotron">
 			<div class="row">
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
+					<form>
+						 <div class="form-group">
+					      <select class="form-control" id="exampleSelect1">
+					        <option>Publisher</option>
+					        <option>Author</option>
+					        <option>Book</option>
+					      </select>
+					    </div>
+				</div>
 				<div class="col-md-6">
 					<center>
-						<form>
-							<fieldset>
-								<div class="form-group">
-							      <input type="text" class="form-control" placeholder="Cari">
-							    </div>
-							</fieldset>	
+						<fieldset>
+							<div class="form-group">
+						      <input type="text" class="form-control" placeholder="Cari">
+						    </div>
+						</fieldset>	
 					</center>
 				</div>
 				<div class="col-md-2">
 							<button type="submit" class="btn btn-primary">Cari</button>
 						</form>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
 			</div>
 			<hr class="my-12">
 			<div class="row">
