@@ -145,6 +145,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('about');
 	}
 
+	public function Search(){
+		$this->load->view('search');
+	}
+
+	public function SearchIn(){
+		$this->load->view('searchIn');
+	}	
+
 	public function logout(){
 		// foreach ($_SESSION as $key => $value) {
 		// 	$_SESSION[$key] = null;

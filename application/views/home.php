@@ -41,7 +41,7 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-2">
-					<form>
+					<form method="" action="<?php echo site_url('Welcome/Search'); ?>">
 						 <div class="form-group">
 					      <select class="form-control" id="exampleSelect1">
 					        <option>Publisher</option>
