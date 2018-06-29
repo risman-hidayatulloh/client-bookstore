@@ -35,25 +35,24 @@
 </nav>
 <br><br>
 <div class="container">
-  <h2>Nama Buku</h2>
+  <?php if($result != NULL){ ?>
+  <h2><?php echo $result->Title; ?></h2>
   <hr class="my-4">
   <div class="row">
      <div class="col-md-3">
-        <img style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;" src="/provis/asset/images/pergi.jpg">  
+        <img style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;" src="<?php echo 'http://68140596.ngrok.io/1/asset/images/'. $result->Picture; ?>">  
       </div>
       <div class="col-md-6">
         <h4>Deskripsi Buku</h4>
-        <p>Judul: Judul Buku</p>
-        <p>ISBN: 12312312321</p>
-        <p>Penerbit: PT. Penerbit Buku</p>
-        <p>Penulis: Nama Lengkap Penulis</p>
-        <p>Alamat Penulis: Jalan Penulis Blok C no. 4, Jakarta</p>
-        <p>Tahun Terbit: 2012</p>
-        <p>Harga: RP100.000,-</p>
+        <p>Judul: <?php echo $result->Title; ?></p>
+        <p>ISBN: <?php echo $result->ISBN; ?></p>
+        <p>Penulis: <?php echo $result->Author_Name ?></p>
+        <p>Alamat Penulis: <?php echo $result->Author_Address ?></p>
+        <p>Tahun Terbit: <?php echo $result->Year; ?></p>
       </div>
       <div class="col-md-3">
         <div style="border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
-        <h4><center>RP100.000,-</center></h4>
+        <h4><center>RP<?php echo $result->Price ?>,-</center></h4>
         </div>
         <br>
         <button type="button" class="btn btn-primary btn-lg btn-block">+ Add To Cart</button>
@@ -61,15 +60,16 @@
         <div class="card border-secondary mb-3" style="max-width: 20rem;">
         <div class="card-header">Informasi Penerbit</div>
           <div class="card-body">
-            <p class="card-text">Nama: Nama Lengkap Penerbit</p>
-            <p class="card-text">Alamat: Jalan Penerbit no. 8</p>
-            <p class="card-text">No. Telp: 081513131234</p>
+            <p class="card-text">Nama: <?php echo $result->Publisher_Name?></p>
+            <p class="card-text">Alamat: <?php echo $result->Publisher_Address?></p>
+            <p class="card-text">No. Telp: <?php echo $result->Publisher_Phone ?></p>
           </div>
         </div>
         <br>
       </div>
   </div>
   <hr class="my-4">
+  <?php } ?>
 </div>
   <nav class="container">
     <footer>

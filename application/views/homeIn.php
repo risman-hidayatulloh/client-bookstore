@@ -44,7 +44,7 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-2">
-					<form method="" action="<?php echo site_url('Welcome/SearchIn'); ?>">
+					<form method="" action="<?php echo site_url('Welcome/Search'); ?>">
 						 <div class="form-group">
 					      <select class="form-control" id="exampleSelect1">
 					        <option>Publisher</option>
@@ -70,144 +70,23 @@
 			</div>
 			<hr class="my-12">
 			<div class="row">
+				<?php 
+				if($book != null){				
+					foreach($book as $data){ ?>
 				<div class="col-md-4">
 					<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
 					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://ecs7.tokopedia.net/img/product-1/2016/9/7/12005892/12005892_b8675922-f406-4c82-8b79-9d99d037391e.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="<?php echo site_url('Welcome/DetailIn'); ?>" style="color: white;">Lihat Selengkapnya>></a>
+					    <img style="height: 300px; width: 100%; display: block;" src="<?php echo 'http://68140596.ngrok.io/1/asset/images/'. $data->Picture; ?>" alt="Card image"><br>
+					    <center>
+						    <h6 class="card-text" style="color:white;"><?php echo $data->Title ?></h6>
+						    <hr class="my-4">
+					    </center>
+						<p class="card-text text-right"><b>Rp<?php echo $data->Price ?></b></p>
+						<?php $id = $data->Id_Book; ?>
+					    <a class="btn btn-info" href="<?php echo site_url('Welcome/DetailIn/'. $id); ?>" style="color: white; width: 100%;">Lihat Selengkapnya>></a>
 					  </div>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://ananthalia19.files.wordpress.com/2013/02/sampul-pk1.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://ssvr.bukukita.com/babacms/displaybuku/99280_f.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://penerbitsalemba.com/v3/images/buku_320992236.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://ecs7.tokopedia.net/img/product-1/2015/11/4/5769067/5769067_8c3efaef-8424-4ac5-b076-0be723ffde0b.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://ssvr.bukukita.com/babacms/displaybuku/101400_f.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="http://1.bp.blogspot.com/-4P9V_bco88s/Txp1hVzwVOI/AAAAAAAAADQ/glaFbkBPSwo/s1600/surat-kecil.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://www.belbuk.com/images/products/buku/novel--sastra/novel-umum/57bfb26487f657.33131049l.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://scoopadm.apps-foundry.com/ebook-covers/34529/big_covers/ID_RAPH2016MTH09LLSE_B.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://blog.gotomalls.com/wp-content/uploads/2017/08/Laskar-Pelangi.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://gagasmedia.net/wp-content/uploads/2017/03/Sebatas-Mimpi.jpg" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-					  <div class="card-body">
-					    <img style="height: 300px; width: 100%; display: block;" src="https://awsimages.detik.net.id//community/media/visual/2016/01/18/b5b2501e-2436-4ab7-a2ff-0c1c4aeef75f.jpg?w=780&q=90" alt="Card image">
-					    <p class="card-text">Judul Buku</p>
-					    <hr class="my-4">
-					    <p class="card-text">Harga Buku</p>
-					    <a href="" style="color: white;">Lihat Selengkapnya>></a>
-					  </div>
-					</div>
-				</div>
+				</div> <?php } }?>
 			</div>
 		</nav>
 	</nav>

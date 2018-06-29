@@ -5,13 +5,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function index()
 	{
 		redirect(site_url('Welcome/Home'));
 	}
 	public function Home(){
-		$this->load->view('home');
+		$this->load->model('ModelBrg');
+		$data['book'] = $this->ModelBrg->GetDataBook();
+		// $data['sb'] = $this->ModelBrg->GetDataSB();
+		// $data['pub'] = $this->ModelBrg->GetDataPublish();
+		// $data['aut'] = $this->ModelBrg->GetDataAuthor();
+		// $data['cus'] = $this->ModelBrg->GetDataCustomer();
+		// $data['sbb'] = $this->ModelBrg->GetDataSBB();
+
+		$this->load->view('home', $data);
+		//$data['result'] = $this->ModelBrg->bookById();
+
+		//$this->load->view('admin', $data);
+		//$this->load->view('tambah');
 	}
+
+	public function tambah(){
+		$this->load->view('tambah');
+	}
+
 	/////////////////////////////////////
 	/*function user_get()
     {
@@ -102,7 +124,9 @@ class Welcome extends CI_Controller {
 
 	public function loginIn(){
 		// if ($_SESSION['logged_in']) {
-		 		$this->load->view('homeIn');
+				$this->load->model('ModelBrg');
+				$data['book'] = $this->ModelBrg->GetDataBook();
+		 		$this->load->view('homeIn', $data);
 		// 	}else{
 		// 		redirect(site_url('Welcome/'));
 		// 	}
@@ -121,12 +145,30 @@ class Welcome extends CI_Controller {
 		// redirect(site_url('Welcome/'));
 	}	
 
-	public function Detail(){
-		$this->load->view('detail/detailBarang1');
+	public function Detail($id){
+		$this->load->model('ModelBrg');
+		$data['result'] = $this->ModelBrg->bookById($id);
+
+		$this->load->view('detail/detailBarang1', $data);
 	}
 
-	public function DetailIn(){
-		$this->load->view('detail/In/detailBarang_userIn');
+	public function DetailIn($id){
+		$this->load->model('ModelBrg');
+		$data['result'] = $this->ModelBrg->bookById($id);
+
+		$this->load->view('detail/In/detailBarang_userIn', $data);
+	}
+
+	public function showTable(){
+		$this->load->model('ModelBrg');
+		$data['book'] = $this->ModelBrg->GetDataBook();
+		$data['sb'] = $this->ModelBrg->GetDataSB();
+		$data['pub'] = $this->ModelBrg->GetDataPublish();
+		$data['aut'] = $this->ModelBrg->GetDataAuthor();
+		$data['cus'] = $this->ModelBrg->GetDataCustomer();
+		$data['sbb'] = $this->ModelBrg->GetDataSBB();
+
+		$this->load->view('admin', $data);
 	}
 
 	public function Keranjang(){
@@ -146,7 +188,10 @@ class Welcome extends CI_Controller {
 	}
 
 	public function Search(){
-		$this->load->view('search');
+		$key = $this->input->post('key');
+		$this->load->model('ModelBrg');
+		$data['search'] = $this->ModelBrg->search($key);
+		$this->load->view('search', $data);
 	}
 
 	public function SearchIn(){
@@ -157,7 +202,9 @@ class Welcome extends CI_Controller {
 		// foreach ($_SESSION as $key => $value) {
 		// 	$_SESSION[$key] = null;
 		// }
-		 $this->load->view('home');
+		$this->load->model('ModelBrg');
+		$data['book'] = $this->ModelBrg->GetDataBook();
+		 $this->load->view('home', $data);
 	}
 
 }

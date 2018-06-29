@@ -41,20 +41,21 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-2">
-					<form method="" action="<?php echo site_url('Welcome/Search'); ?>">
-						 <div class="form-group">
+					<form method="post" action="<?php echo site_url('Welcome/Search'); ?>">
+						 <!-- <div class="form-group">
 					      <select class="form-control" id="exampleSelect1">
 					        <option>Publisher</option>
 					        <option>Author</option>
 					        <option>Book</option>
 					      </select>
-					    </div>
+					    </div> -->
 				</div>
 				<div class="col-md-6">
 					<center>
+						<form method="post" action="<?php echo site_url('Welcome/Search'); ?>">
 						<fieldset>
 							<div class="form-group">
-						      <input type="text" class="form-control" placeholder="Cari">
+						      <input type="text" class="form-control" placeholder="Cari" name="key">
 						    </div>
 						</fieldset>	
 					</center>
@@ -66,7 +67,14 @@
 				<div class="col-md-1"></div>
 			</div>
 			<hr class="my-12">
-			
+			<div class="row">
+				<!-- <?php if($search != NULL){
+					foreach ($search as $value) {?>
+				<div class="col-md-4">
+					<?php echo $value->book_Title; ?>
+				</div>
+				<?php } } ?> -->
+			</div>
 		</nav>
 	</nav>
 
