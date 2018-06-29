@@ -49,6 +49,16 @@
 								    	<input type="text" name="new-phone" class="form-control"><br>  	
 						    		</div>
 						    		<div class="col-md-3">
+							    		<label>Provinsi:</label>
+							    	</div>
+							    	<div class="col-md-9">
+							    		<select name="new-Provinsi" class="form-control">
+							    			<?php foreach ($prov as $value) {?>
+							    			<option value="<?php echo $value->id_Provinsi; ?>"><?php echo $value->name; ?></option>
+							    			<?php } ?>
+							    		</select><br>  	
+						    		</div>
+						    		<div class="col-md-3">
 							    		<label>Kabupaten/Kota:</label>
 							    	</div>
 							    	<div class="col-md-9">
@@ -77,16 +87,6 @@
 							    			<option value="<?php echo $value->id_Kelurahan; ?>"><?php echo $value->name; ?></option>
 							    			<?php } ?>
 							    		</select><br> 	
-						    		</div>
-						    		<div class="col-md-3">
-							    		<label>Provinsi:</label>
-							    	</div>
-							    	<div class="col-md-9">
-							    		<select name="new-Provinsi" class="form-control">
-							    			<?php foreach ($prov as $value) {?>
-							    			<option value="<?php echo $value->id_Provinsi; ?>"><?php echo $value->name; ?></option>
-							    			<?php } ?>
-							    		</select><br>  	
 						    		</div>
 						    		<div class="col-md-3">
 							    			<label>Password:</label>

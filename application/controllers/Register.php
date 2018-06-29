@@ -17,10 +17,10 @@ class Register extends CI_Controller
     {
         /*Buka aja komentarnya tapi bakalan lama karena datanya banyak*/
         $data['title'] = 'register';
+        $data['prov'] = $this->getProv();
         $data['kab'] = $this->getKab();
-        /*$data['kec'] = $this->getKec();
+        $data['kec'] = $this->getKec();
         $data['kel'] = $this->getKel();
-        $data['prov'] = $this->getProv();*/
 
         $this->load->view('global/header', $data);
         $this->load->view('global/regist');
