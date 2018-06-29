@@ -31,6 +31,9 @@
       <?php if (empty($_SESSION['login'])) { ?>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">        <!-- keranjang -->
+              <button type="button" class="btn btn-success btn-sm" onclick="location.href='<?php echo site_url('cart_user') ?>'"><i class="fa" style="color:white;">&#xf290;</i>&nbsp;&nbsp;</button>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('Login'); ?>">Masuk <span class="sr-only">(current)</span></a>
             </li>
@@ -44,9 +47,6 @@
     if (!empty($_SESSION['login'])) { ?>
 
           <ul class="navbar-nav mr-auto">
-            <li>        <!-- keranjang -->
-              <button type="button" class="btn btn-success btn-sm" onclick="location.href='<?php echo site_url('cart_user') ?>'"><i class="fa" style="color:white;">&#xf290;</i>&nbsp;&nbsp;</button>
-            </li>
             <li>
               <button type="button" class="btn btn-danger btn-sm" onclick="location.href='<?php echo site_url('logout') ?>'">Logout</button>
             </li>
