@@ -96,14 +96,6 @@ class Client extends CI_Controller
 		$this->reset();
 	}
 
-	public function regist()
-	{
-		$data['title'] = 'register';
-		$this->load->view('global/header', $data);
-		$this->load->view('global/regist');
-		$this->load->view('global/footer');
-	}
-
 	public function about()
 	{
 		$data['title'] = 'informasi';
