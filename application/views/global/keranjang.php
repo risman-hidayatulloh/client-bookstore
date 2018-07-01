@@ -9,16 +9,16 @@
         <h4><?php echo $value['title'] ?></h4>
         <h5>RP<?php echo $value['price'] ?>,-</h5>
         <br>
-        <form>
+        <form method="post" action="<?php echo site_url('shoppingbasketbook/insert') ?>">
           <div class="form-group">
               <input type="number" id="number" value="0" />
           </div>
-        </form>
-      </div>
+          </div>
 
-        <div class="col-md-2">
-          <button type="button" class="btn btn-primary">Pesan</button>
-        </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-primary">Pesan</button>
+          </div>
+        </form>
     </div>
   </div>
   <?php endforeach; }?>

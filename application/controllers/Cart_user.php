@@ -27,6 +27,7 @@ class Cart_user extends CI_Controller
   function viewData($data)
   {
     $data['title'] = 'Cart_user';
+
     $this->load->view('global/header', $data);
     $this->load->view('global/cart_user');
     $this->load->view('global/footer');
@@ -34,35 +35,29 @@ class Cart_user extends CI_Controller
 
 	public function index()
 	{
-    if (!isset($_SESSION['token'])) {
+    if (empty($_SESSION['login'])) {
      redirect(site_url('login'));
-    }
-
-    if (isset($_POST['Cart_user'])) {
-      redirect(site_url('Cart_user'));
-    } else if (isset($_POST['author'])) {
-      redirect(site_url('author'));
-    } else if (isset($_POST['bookcategory'])) {
-      redirect(site_url('bookcategory'));
-    } else if (isset($_POST['customer'])) {
-      redirect(site_url('customer'));
-    } else if (isset($_POST['publisher'])) {
-      redirect(site_url('publisher'));
-    } else {
-      $this->get('all', null);
+    }else {
+      $data['shoppingbasketbook'] = $this->getshoppingbasketbook('all', null);
+      $data['shoppingbasket'] = $this->getshoppingbasket('all', null);
+      $data['book'] = $this->getbook('all', null);
+      $data['login'] = $this->getlogin('all', null);
+      
+      // menampilkan data
+      $this->viewData($data);
     }
 	}
 
-    public function get($key, $value = null)
+    public function getshoppingbasketbook($key, $value = null)
   {
-    $ch = curl_init(API . "customer");
+    $ch = curl_init(API . "shoppingbasketbook");
 
     $authorization = AUTH . $_SESSION['token'];
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", $authorization, "Accept: application/json"));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    $data['customer'] = json_decode(curl_exec($ch));
+    $data['shoppingbasketbook'] = json_decode(curl_exec($ch));
 
     $_SESSION['httpcode'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -70,94 +65,208 @@ class Cart_user extends CI_Controller
 
     if ($_SESSION['httpcode'] == 200) {
       // menyaring hasil pencarian
-      $customers = [];
-      if ($key == 'title' || $key == 'id_customer') {
+      $shoppingbasketbooks = [];
+      if ($key == 'title' || $key == 'id_shoppingbasketbook') {
         // mengonversi array of objek ke array of array
-        foreach ($data['customer'] as $customer) {
-          var_dump($customer);
-          $customer = get_object_vars($customer);
+        foreach ($data['shoppingbasketbook'] as $shoppingbasketbook) {
+          var_dump($shoppingbasketbook);
+          $shoppingbasketbook = get_object_vars($shoppingbasketbook);
           // jika yang dicarinya mengandung kata masukan
-          if (stripos($customer[$key], $value) !== false) {
+          if (stripos($shoppingbasketbook[$key], $value) !== false) {
             // memasukkan data yang dicari ke array baru
-            array_push($customers, $customer);
+            array_push($shoppingbasketbooks, $shoppingbasketbook);
           }
         }
       } elseif ($key == 'all') {
         // mengonversi array of objek ke array of array
-        foreach ($data['customer'] as $customer) {
-          $customer = get_object_vars($customer);
+        foreach ($data['shoppingbasketbook'] as $shoppingbasketbook) {
+          $shoppingbasketbook = get_object_vars($shoppingbasketbook);
           // memasukkan data yang dicari ke array baru
-          array_push($customers, $customer);
+          array_push($shoppingbasketbooks, $shoppingbasketbook);
         }
       } else {
         // mengonversi array of objek ke array of array
-        foreach ($data['customer'] as $customer) {
-          $customer = get_object_vars($customer);
+        foreach ($data['shoppingbasketbook'] as $shoppingbasketbook) {
+          $shoppingbasketbook = get_object_vars($shoppingbasketbook);
           // jika sesuai dengan permintaan
-          if ($customer[$key] == $value) {
+          if ($shoppingbasketbook[$key] == $value) {
             // memasukkan data yang dicari ke array baru
-            array_push($customers, $customer);
+            array_push($shoppingbasketbooks, $shoppingbasketbook);
           }
         }
       }
-      $data['customer'] = $customers;
+      $data['shoppingbasketbook'] = $shoppingbasketbooks;
+
+      return $shoppingbasketbooks;
     }
 
-    // menampilkan data
-    $this->viewData($data);
+    
 
     $this->reset();
   }
 
-  public function getDetails($id)
+   public function getshoppingbasket($key, $value = null)
   {
-    $ch = curl_init(API . "shoppingbasket/detail");
+    $ch = curl_init(API . "shoppingbasket");
 
     $authorization = AUTH . $_SESSION['token'];
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", $authorization, "Accept: application/json"));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    $data = json_decode(curl_exec($ch));
+    $data['shoppingbasket'] = json_decode(curl_exec($ch));
+
+    $_SESSION['httpcode'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     curl_close($ch);
 
-    $i = 1;
-    $j = 1;
-    $csh = 0; // current Id_ShoppingBasket
-    $isnull = true;
-    foreach ($data as $value) {
-      if ($value->id_shoppingbasketbook == $id) {
-        $isnull = false;
-
-        if ($value->id_ShoppingBasket != $csh) {
-          $csh = $value->id_ShoppingBasket;
-          $j = 1;
-          echo "<h6>Transaction No." . $i++ . "</h6>";
-        }
-
-        echo "<table class='table table-hover table-striped table-light table-bordered'>";
-        echo "<thead>";
-        echo "<tr><th colspan='2'>Book No." . $j++ . "</th></tr>";
-        echo "</thead>";
-        foreach ($value as $k => $v) {
-          if (stripos($k, 'id_') === false) {
-            echo "<tr>";
-            echo "<th width='100'>" . ucfirst($k) . "</th>";
-            if ($k == 'picture') {
-              echo "<td><img src='" . $v . "' alt='No Preview' height='150'></td>";
-            } else {
-              echo "<td>" . $v . "</td>";
-            }
-            echo "</tr>";
+    if ($_SESSION['httpcode'] == 200) {
+      // menyaring hasil pencarian
+      $shoppingbaskets = [];
+      if ($key == 'title' || $key == 'id_shoppingbasket') {
+        // mengonversi array of objek ke array of array
+        foreach ($data['shoppingbasket'] as $shoppingbasket) {
+          var_dump($shoppingbasket);
+          $shoppingbasket = get_object_vars($shoppingbasket);
+          // jika yang dicarinya mengandung kata masukan
+          if (stripos($shoppingbasket[$key], $value) !== false) {
+            // memasukkan data yang dicari ke array baru
+            array_push($shoppingbaskets, $shoppingbasket);
           }
         }
-        echo "</table>";
-
+      } elseif ($key == 'all') {
+        // mengonversi array of objek ke array of array
+        foreach ($data['shoppingbasket'] as $shoppingbasket) {
+          $shoppingbasket = get_object_vars($shoppingbasket);
+          // memasukkan data yang dicari ke array baru
+          array_push($shoppingbaskets, $shoppingbasket);
+        }
+      } else {
+        // mengonversi array of objek ke array of array
+        foreach ($data['shoppingbasket'] as $shoppingbasket) {
+          $shoppingbasket = get_object_vars($shoppingbasket);
+          // jika sesuai dengan permintaan
+          if ($shoppingbasket[$key] == $value) {
+            // memasukkan data yang dicari ke array baru
+            array_push($shoppingbaskets, $shoppingbasket);
+          }
+        }
       }
+      $data['shoppingbasket'] = $shoppingbaskets;
+
+      return $shoppingbaskets;
     }
-    if ($isnull) {
-      echo "No data.";
+
+    $this->reset();
+  }
+
+   public function getbook($key, $value = null)
+  {
+    $ch = curl_init(API . "book");
+
+    $authorization = AUTH . $_SESSION['token'];
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", $authorization, "Accept: application/json"));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $data['book'] = json_decode(curl_exec($ch));
+
+    $_SESSION['httpcode'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+
+    if ($_SESSION['httpcode'] == 200) {
+      // menyaring hasil pencarian
+      $books = [];
+      if ($key == 'title' || $key == 'id_book') {
+        // mengonversi array of objek ke array of array
+        foreach ($data['book'] as $book) {
+          var_dump($book);
+          $book = get_object_vars($book);
+          // jika yang dicarinya mengandung kata masukan
+          if (stripos($book[$key], $value) !== false) {
+            // memasukkan data yang dicari ke array baru
+            array_push($books, $book);
+          }
+        }
+      } elseif ($key == 'all') {
+        // mengonversi array of objek ke array of array
+        foreach ($data['book'] as $book) {
+          $book = get_object_vars($book);
+          // memasukkan data yang dicari ke array baru
+          array_push($books, $book);
+        }
+      } else {
+        // mengonversi array of objek ke array of array
+        foreach ($data['book'] as $book) {
+          $book = get_object_vars($book);
+          // jika sesuai dengan permintaan
+          if ($book[$key] == $value) {
+            // memasukkan data yang dicari ke array baru
+            array_push($books, $book);
+          }
+        }
+      }
+      $data['book'] = $books;
+
+      return $books;
     }
+
+    $this->reset();
+  }
+
+  public function getlogin($key, $value = null)
+  {
+    $ch = curl_init(API . "login");
+
+    $authorization = AUTH . $_SESSION['token'];
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", $authorization, "Accept: application/json"));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $data['login'] = json_decode(curl_exec($ch));
+
+    $_SESSION['httpcode'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+
+    if ($_SESSION['httpcode'] == 200) {
+      // menyaring hasil pencarian
+      $logins = [];
+      if ($key == 'title' || $key == 'id_login') {
+        // mengonversi array of objek ke array of array
+        foreach ($data['login'] as $login) {
+          var_dump($login);
+          $login = get_object_vars($login);
+          // jika yang dicarinya mengandung kata masukan
+          if (stripos($login[$key], $value) !== false) {
+            // memasukkan data yang dicari ke array baru
+            array_push($logins, $login);
+          }
+        }
+      } elseif ($key == 'all') {
+        // mengonversi array of objek ke array of array
+        foreach ($data['login'] as $login) {
+          $login = get_object_vars($login);
+          // memasukkan data yang dicari ke array baru
+          array_push($logins, $login);
+        }
+      } else {
+        // mengonversi array of objek ke array of array
+        foreach ($data['login'] as $login) {
+          $login = get_object_vars($login);
+          // jika sesuai dengan permintaan
+          if ($login[$key] == $value) {
+            // memasukkan data yang dicari ke array baru
+            array_push($logins, $login);
+          }
+        }
+      }
+      $data['login'] = $logins;
+
+      return $logins;
+    }
+
+    $this->reset();
   }
 }

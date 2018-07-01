@@ -5,6 +5,7 @@
     <title>Online Bookstore</title>
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/lux/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
 
 <body>
@@ -23,6 +24,13 @@
               <a class="nav-link" href="<?php echo site_url('Client/about'); ?>">Informasi <span class="sr-only">(current)</span></a>
           </li>
         </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+          <li class="nav-item">        <!-- keranjang -->
+              <button type="button" class="btn btn-success btn-sm" onclick="location.href='<?php echo site_url('Cart_user') ?>'"><i class="fa" style="color:white;">&#xf290;</i>&nbsp;&nbsp;</button>
+            </li>
+          </div>
+          </form>
       </div>
 
       <!-- Hilangkan link pada navigasi utama untuk halaman login -->
@@ -31,9 +39,6 @@
       <?php if (empty($_SESSION['login'])) { ?>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">        <!-- keranjang -->
-              <button type="button" class="btn btn-success btn-sm" onclick="location.href='<?php echo site_url('cart_user') ?>'"><i class="fa" style="color:white;">&#xf290;</i>&nbsp;&nbsp;</button>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('Login'); ?>">Masuk <span class="sr-only">(current)</span></a>
             </li>

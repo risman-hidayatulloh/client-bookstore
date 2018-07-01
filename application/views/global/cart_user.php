@@ -7,31 +7,37 @@
     <thead>
       <tr>
         <th style="width:50px;text-align:center">No</th>
-        <th>Picture</th>
         <th>Title</th>
-        <th>Count</th>
+        <th>Picture</th>
         <th>Price</th>
+        <th>Count</th>
         <th style="width:130px">Action</th>
       </tr>
     </thead>
 
     <tbody>
 
-      <?php if (is_array($customer) && !empty($customer)) {
+      <?php if (is_array($shoppingbasketbook) && !empty($shoppingbasketbook)) {
         $no = 1;
-        foreach ($customer as $value): ?>
+        //var_dump($shoppingbasket);
+        foreach ($shoppingbasketbook as $value):
+          foreach ($book as $value2): 
+          if ($value['id_Book'] == $value2['id_Book']) {
+          
+          
+          
+          ?>
 
         <tr>
-
           <td style="text-align:center;font-weight:bold"><?php echo $no++ ?></td>
-          <td><?php echo $value['price'] ?></td>
+          <td><?php echo $value2['title'] ?></td>
+          <td><img style="height: 100px; width: 30%; display: block;" src="<?php echo $value2['picture'] ?>" alt="No Preview"><br></td>
+          <td><?php echo $value2['price'] ?></td>
           <td><?php echo $value['count'] ?></td>
-          <td><?php echo $value['picture'] ?></td>
-
-
+          <td><button class="btn btn-success">Delete</button></td>
         </tr>
 
-      <?php endforeach; } else { ?>
+      <?php } endforeach; endforeach; } else { ?>
 
         <tr>
           <td colspan="6">No data.</td>
@@ -44,16 +50,3 @@
   </table>
 </div>
 </div>
-
-<script type="text/javascript">
-  function getDetails() {
-    $('#detail-list').html('Loading...');
-    var url = "<?php echo site_url('customer/getDetails/') ?>" + $('#detail-id').html();
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url, true);
-    xhttp.send();
-    xhttp.onreadystatechange = function() {
-      $('#detail-list').html(this.responseText);
-    };
-  }
-</script>

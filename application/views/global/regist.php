@@ -52,40 +52,32 @@
 							    		<label>Provinsi:</label>
 							    	</div>
 							    	<div class="col-md-9">
-							    		<select name="new-Provinsi" class="form-control">
-							    			<?php foreach ($prov as $value) {?>
-							    			<option value="<?php echo $value->id_Provinsi; ?>"><?php echo $value->name; ?></option>
-							    			<?php } ?>
+							    		<select name="new-Provinsi" id="new_Provinsi" class="form-control">
+							    			
 							    		</select><br>  	
 						    		</div>
 						    		<div class="col-md-3">
 							    		<label>Kabupaten/Kota:</label>
 							    	</div>
 							    	<div class="col-md-9">
-							    		<select name="new-KabupatenKota" class="form-control">
-							    			<?php foreach ($kab as $value) {?>
-							    			<option value="<?php echo $value->id_KabupatenKota; ?>"><?php echo $value->name; ?></option>
-							    			<?php } ?>
+							    		<select name="new-KabupatenKota" id="new_Kabupaten" class="form-control">
+							    			
 							    		</select><br> 	
 						    		</div>
 						    		<div class="col-md-3">
 							    		<label>Kecamatan:</label>
 							    	</div>
 							    	<div class="col-md-9">
-							    		<select name="new-Kecamatan" class="form-control">
-							    			<?php foreach ($kec as $value) {?>
-							    			<option value="<?php echo $value->id_Kecamatan; ?>"><?php echo $value->name; ?></option>
-							    			<?php } ?>
+							    		<select name="new-Kecamatan" id="new_Kecamatan" class="form-control">
+							    			
 							    		</select><br>  	
 						    		</div>
 						    		<div class="col-md-3">
 							    		<label>Kelurahan:</label>
 							    	</div>
 							    	<div class="col-md-9">
-							    		<select name="new-Kelurahan" class="form-control">
-							    			<?php foreach ($kel as $value) {?>
-							    			<option value="<?php echo $value->id_Kelurahan; ?>"><?php echo $value->name; ?></option>
-							    			<?php } ?>
+							    		<select name="new-Kelurahan" id="new_Kelurahan" class="form-control">
+							    			
 							    		</select><br> 	
 						    		</div>
 						    		<div class="col-md-3">
@@ -110,3 +102,52 @@
 			</div>
 		</nav>
 	</nav>
+
+	<script type="text/javascript">
+		
+	  $("#new_Provinsi").one("click", function() {
+	    $("#new_Provinsi").html("<option>Loading...</option>");
+	    var xhttp;
+	    xhttp = new XMLHttpRequest();
+	    xhttp.open("GET", "<?php echo site_url('selection') ?>?name=provinsi", true);
+	    xhttp.send();
+	    xhttp.onreadystatechange = function() {
+	      $("#new_Provinsi").html(this.responseText);
+	    };
+	  });
+
+	  $("#new_Kabupaten").one("click", function() {
+	    $("#new_Kabupaten").html("<option>Loading...</option>");
+	    var xhttp;
+	    xhttp = new XMLHttpRequest();
+	    xhttp.open("GET", "<?php echo site_url('selection') ?>?name=kabupatenkota", true);
+	    xhttp.send();
+	    xhttp.onreadystatechange = function() {
+	      $("#new_Kabupaten").html(this.responseText);
+	    };
+	  });
+
+	  $("#new_Kecamatan").one("click", function() {
+	    $("#new_Kecamatan").html("<option>Loading...</option>");
+	    var xhttp;
+	    xhttp = new XMLHttpRequest();
+	    xhttp.open("GET", "<?php echo site_url('selection') ?>?name=kecamatan", true);
+	    xhttp.send();
+	    xhttp.onreadystatechange = function() {
+	      $("#new_Kecamatan").html(this.responseText);
+	    };
+	  });
+
+	  $("#new_Kelurahan").one("click", function() {
+	    $("#new_Kelurahan").html("<option>Loading...</option>");
+	    var xhttp;
+	    xhttp = new XMLHttpRequest();
+	    xhttp.open("GET", "<?php echo site_url('selection') ?>?name=kelurahan", true);
+	    xhttp.send();
+	    xhttp.onreadystatechange = function() {
+	      $("#new_Kelurahan").html(this.responseText);
+	    };
+	  });
+
+
+	</script>

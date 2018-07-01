@@ -85,4 +85,5 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('API', 'http://localhost:5000/api/');
+//define('API', 'http://2d9d25aa.ngrok.io/api/');
 define('AUTH', 'Authorization: Bearer ');
